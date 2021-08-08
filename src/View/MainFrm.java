@@ -6,6 +6,7 @@
 package View;
 
 import Controller.CalculadoraController;
+import Controller.OperacaoMatematicaController;
 
 /**
  *
@@ -14,6 +15,7 @@ import Controller.CalculadoraController;
 public class MainFrm extends javax.swing.JFrame {
 
     CalculadoraController controller = new CalculadoraController();
+    OperacaoMatematicaController opMatController = new OperacaoMatematicaController();
     
     /**
      * Creates new form MainFrm
@@ -46,7 +48,7 @@ public class MainFrm extends javax.swing.JFrame {
         btn_Nove = new javax.swing.JButton();
         btn_Oito = new javax.swing.JButton();
         btn_Sete = new javax.swing.JButton();
-        btn_C = new javax.swing.JButton();
+        btn_Virgula = new javax.swing.JButton();
         btn_CE = new javax.swing.JButton();
         btn_Delete = new javax.swing.JButton();
         btn_Divisao = new javax.swing.JButton();
@@ -140,11 +142,11 @@ public class MainFrm extends javax.swing.JFrame {
             }
         });
 
-        btn_C.setFont(new java.awt.Font("Consolas", 0, 36)); // NOI18N
-        btn_C.setText(",");
-        btn_C.addActionListener(new java.awt.event.ActionListener() {
+        btn_Virgula.setFont(new java.awt.Font("Consolas", 0, 36)); // NOI18N
+        btn_Virgula.setText(",");
+        btn_Virgula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_CActionPerformed(evt);
+                btn_VirgulaActionPerformed(evt);
             }
         });
 
@@ -186,6 +188,11 @@ public class MainFrm extends javax.swing.JFrame {
 
         btn_Igual.setFont(new java.awt.Font("Consolas", 0, 36)); // NOI18N
         btn_Igual.setText("=");
+        btn_Igual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_IgualActionPerformed(evt);
+            }
+        });
 
         btn_Soma.setFont(new java.awt.Font("Consolas", 0, 36)); // NOI18N
         btn_Soma.setText("+");
@@ -238,7 +245,7 @@ public class MainFrm extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btn_CE, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_C, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btn_Virgula, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btn_Um, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -304,7 +311,7 @@ public class MainFrm extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btn_Zero, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btn_CE, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn_C, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btn_Virgula, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btn_Soma, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -386,12 +393,16 @@ public class MainFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_DivisaoActionPerformed
 
     private void btn_DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DeleteActionPerformed
-        txt_Conta.setText("");
+        controller.LimpaPreview(txt_Conta);
     }//GEN-LAST:event_btn_DeleteActionPerformed
 
-    private void btn_CActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CActionPerformed
+    private void btn_VirgulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_VirgulaActionPerformed
         controller.EscrevePreview(",", txt_Conta);
-    }//GEN-LAST:event_btn_CActionPerformed
+    }//GEN-LAST:event_btn_VirgulaActionPerformed
+
+    private void btn_IgualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_IgualActionPerformed
+        opMatController.ProcessaValoresOperadores(txt_Conta, lbl_OperacaoAnterior);
+    }//GEN-LAST:event_btn_IgualActionPerformed
 
     /**
      * @param args the command line arguments
@@ -429,7 +440,6 @@ public class MainFrm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_C;
     private javax.swing.JButton btn_CE;
     private javax.swing.JButton btn_Cinco;
     private javax.swing.JButton btn_Delete;
@@ -446,6 +456,7 @@ public class MainFrm extends javax.swing.JFrame {
     private javax.swing.JButton btn_Subtracao;
     private javax.swing.JButton btn_Tres;
     private javax.swing.JButton btn_Um;
+    private javax.swing.JButton btn_Virgula;
     private javax.swing.JButton btn_Zero;
     private javax.swing.JLabel lbl_OperacaoAnterior;
     private javax.swing.JPanel pnl_PreviewConta;

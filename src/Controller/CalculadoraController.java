@@ -15,6 +15,8 @@ import javax.swing.JTextField;
 public class CalculadoraController {
     
     private String ultimoChars = "";
+    
+    // Variável para controlar a quantidade de virgulas digitadas até que seja informado um caractere de ação/operação
     private int qtdeVirgula = 0;
     
     /**
@@ -36,8 +38,6 @@ public class CalculadoraController {
                     JOptionPane.ERROR_MESSAGE
             );
         }
-        
-        System.out.println(qtdeVirgula);
     }
     
     /**
@@ -59,6 +59,7 @@ public class CalculadoraController {
             return false;
         } 
         // Caso não verifica se o caractere vem seguido de outro caractere de operação fazendo assim a substituição
+        // Se o caractere informmado for um "," passara por um lógica para que ele não seja repetido
         else { 
             switch(texto) {
                 case "+":
@@ -112,11 +113,22 @@ public class CalculadoraController {
                     }
             }
             
-            if(!"0123456789".contains(texto) && "+-*/".contains(texto)) {
+            if(!"0123456789".contains(texto) && "+-*/,".contains(texto)) {
                 qtdeVirgula = 0;
             }
             
         }
         return true;
     }
+    
+    /**
+     * Limpa o preview e zera as variáveis
+     * @param txt_Preview 
+     */
+    public void LimpaPreview(JTextField txt_Preview) {
+        txt_Preview.setText("");
+        ultimoChars = "";
+        qtdeVirgula = 0;
+    }
+            
 }
