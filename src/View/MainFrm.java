@@ -24,6 +24,7 @@ public class MainFrm extends javax.swing.JFrame {
         // Coloca o Form no centro da tela e tira o redimencionamento
         setLocationRelativeTo(null);
         setResizable(false);
+        setTitle("Calculadora");
     }
 
     /**
@@ -140,11 +141,15 @@ public class MainFrm extends javax.swing.JFrame {
         });
 
         btn_C.setFont(new java.awt.Font("Consolas", 0, 36)); // NOI18N
-        btn_C.setText("C");
-        btn_C.setEnabled(false);
+        btn_C.setText(",");
+        btn_C.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_CActionPerformed(evt);
+            }
+        });
 
         btn_CE.setFont(new java.awt.Font("Consolas", 0, 36)); // NOI18N
-        btn_CE.setText("CE");
+        btn_CE.setText(".");
         btn_CE.setEnabled(false);
 
         btn_Delete.setFont(new java.awt.Font("Consolas", 0, 36)); // NOI18N
@@ -181,11 +186,6 @@ public class MainFrm extends javax.swing.JFrame {
 
         btn_Igual.setFont(new java.awt.Font("Consolas", 0, 36)); // NOI18N
         btn_Igual.setText("=");
-        btn_Igual.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_IgualActionPerformed(evt);
-            }
-        });
 
         btn_Soma.setFont(new java.awt.Font("Consolas", 0, 36)); // NOI18N
         btn_Soma.setText("+");
@@ -318,7 +318,7 @@ public class MainFrm extends javax.swing.JFrame {
     private void txt_ContaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_ContaKeyTyped
         
         // Rotina para filtras apenas os caracteres que eu preciso para realizar os calculos
-        String chars = "0123456789+-*/.,";
+        String chars = "0123456789+-*/,";
         
         if(!chars.contains(evt.getKeyChar() + "")) {
             evt.consume();
@@ -389,9 +389,9 @@ public class MainFrm extends javax.swing.JFrame {
         txt_Conta.setText("");
     }//GEN-LAST:event_btn_DeleteActionPerformed
 
-    private void btn_IgualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_IgualActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_IgualActionPerformed
+    private void btn_CActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CActionPerformed
+        controller.EscrevePreview(",", txt_Conta);
+    }//GEN-LAST:event_btn_CActionPerformed
 
     /**
      * @param args the command line arguments
